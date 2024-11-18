@@ -1,0 +1,166 @@
+ local instructionContainer = Instance.new("Frame")
+    instructionContainer.Size = UDim2.new(1, -20, 0, 50)
+    instructionContainer.Position = UDim2.new(0, 10, 0, 10)
+    instructionContainer.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+    instructionContainer.BorderSizePixel = 0
+    instructionContainer.Parent = optionContainer
+
+    local uiCornerInstruction = Instance.new("UICorner")
+    uiCornerInstruction.CornerRadius = UDim.new(0, 12)
+    uiCornerInstruction.Parent = instructionContainer
+
+    local instructionLabel = Instance.new("TextLabel")
+    instructionLabel.Size = UDim2.new(1, -20, 1, -10)
+    instructionLabel.Position = UDim2.new(0, 10, 0, 5)
+    instructionLabel.BackgroundTransparency = 1
+    instructionLabel.Text = "Use the toggle to send all of YOUR data."
+    instructionLabel.Font = Enum.Font.SourceSans
+    instructionLabel.TextSize = 14
+    instructionLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    instructionLabel.TextWrapped = true
+    instructionLabel.TextXAlignment = Enum.TextXAlignment.Left
+    instructionLabel.Parent = instructionContainer
+
+    local sendDataFrame = Instance.new("Frame")
+    sendDataFrame.Size = UDim2.new(1, -20, 0, 70)
+    sendDataFrame.Position = UDim2.new(0, 10, 0, 65)
+    sendDataFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    sendDataFrame.Parent = optionContainer
+
+    local uiCornerSendData = Instance.new("UICorner")
+    uiCornerSendData.CornerRadius = UDim.new(0, 8)
+    uiCornerSendData.Parent = sendDataFrame
+
+    local sendDataLabel = Instance.new("TextLabel")
+    sendDataLabel.Size = UDim2.new(0.7, 0, 1, 0)
+    sendDataLabel.BackgroundTransparency = 1
+    sendDataLabel.Text = "Send All Data"
+    sendDataLabel.Font = Enum.Font.SourceSansBold
+    sendDataLabel.TextSize = 16
+    sendDataLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    sendDataLabel.TextXAlignment = Enum.TextXAlignment.Left
+    sendDataLabel.Parent = sendDataFrame
+
+    local toggleFrame = Instance.new("Frame")
+    toggleFrame.Size = UDim2.new(0.2, 0, 0.5, 0)
+    toggleFrame.Position = UDim2.new(0.7, 0, 0.25, 0)
+    toggleFrame.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+    toggleFrame.BorderSizePixel = 0
+    toggleFrame.Parent = sendDataFrame
+
+    local uiCornerToggle = Instance.new("UICorner")
+    uiCornerToggle.CornerRadius = UDim.new(0, 25)
+    uiCornerToggle.Parent = toggleFrame
+
+    local ball = Instance.new("Frame")
+    ball.Size = UDim2.new(0, 25, 0, 25)
+    ball.Position = UDim2.new(0, 0, 0.5, -12.5)
+    ball.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ball.BorderSizePixel = 0
+    ball.Parent = toggleFrame
+
+    local ballUICorner = Instance.new("UICorner")
+    ballUICorner.CornerRadius = UDim.new(0, 50)
+    ballUICorner.Parent = ball
+
+    local isToggled = false
+    toggleFrame.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 then
+            isToggled = not isToggled
+
+            if isToggled then
+                toggleFrame.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+                ball.Position = UDim2.new(1, -25, 0.5, -12.5)
+
+                local dialog = Instance.new("ScreenGui", game.CoreGui)
+                local bg = Instance.new("Frame")
+                bg.Size = UDim2.new(0, 275, 0, 130)
+                bg.Position = UDim2.new(0.5, -150, 0.5, -75)
+                bg.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+                bg.Parent = dialog
+
+                local uiCornerDialog = Instance.new("UICorner")
+                uiCornerDialog.CornerRadius = UDim.new(0, 12)
+                uiCornerDialog.Parent = bg
+
+                local titleLabel = Instance.new("TextLabel")
+                titleLabel.Size = UDim2.new(1, 0, 0, 40)
+                titleLabel.BackgroundTransparency = 1
+                titleLabel.Text = "Confirmation"
+                titleLabel.Font = Enum.Font.SourceSansBold
+                titleLabel.TextSize = 20
+                titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+                titleLabel.TextYAlignment = Enum.TextYAlignment.Top
+				titleLabel.Position = UDim2.new(0, 0, 0, 5)  
+                titleLabel.Parent = bg
+
+                local warningLabel = Instance.new("TextLabel")
+                warningLabel.Size = UDim2.new(1, -20, 0, 70)
+                warningLabel.Position = UDim2.new(0, 25, 0, 0)
+                warningLabel.BackgroundTransparency = 1
+                warningLabel.Text = "Are you sure you want to send all this data?"
+                warningLabel.Font = Enum.Font.SourceSans
+                warningLabel.TextSize = 15.5
+                warningLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+                warningLabel.TextWrapped = true
+                warningLabel.TextXAlignment = Enum.TextXAlignment.Left
+                warningLabel.Parent = bg
+
+                local descripLabel = Instance.new("TextLabel")
+                descripLabel.Size = UDim2.new(1, -20, 0, 70)
+                descripLabel.Position = UDim2.new(0, 33.5, 0, 25)
+                descripLabel.BackgroundTransparency = 1
+                descripLabel.Text = "Just note this will send 15 text files."
+                descripLabel.Font = Enum.Font.SourceSans
+                descripLabel.TextSize = 16
+                descripLabel.TextColor3 = Color3.fromRGB(255, 49, 49)
+                descripLabel.TextWrapped = true
+                descripLabel.TextXAlignment = Enum.TextXAlignment.Left
+                descripLabel.Parent = bg
+
+                local confirmButton = Instance.new("TextButton")
+                confirmButton.Size = UDim2.new(0.4, 0, 0, 35)
+                confirmButton.Position = UDim2.new(0.055, 0, 1, -50)
+                confirmButton.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
+                confirmButton.Text = "Yes"
+                confirmButton.Font = Enum.Font.SourceSansBold
+                confirmButton.TextSize = 18
+                confirmButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+                confirmButton.Parent = bg
+
+                local cancelButton = Instance.new("TextButton")
+                cancelButton.Size = UDim2.new(0.4, 0, 0, 35)
+                cancelButton.Position = UDim2.new(0.55, 0, 1, -50)
+                cancelButton.BackgroundColor3 = Color3.fromRGB(255, 60, 60)
+                cancelButton.Text = "No"
+                cancelButton.Font = Enum.Font.SourceSansBold
+                cancelButton.TextSize = 18
+                cancelButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+                cancelButton.Parent = bg
+
+                local uiCornerConfirm = Instance.new("UICorner")
+                uiCornerConfirm.CornerRadius = UDim.new(0, 8)
+                uiCornerConfirm.Parent = confirmButton
+
+                local uiCornerCancel = Instance.new("UICorner")
+                uiCornerCancel.CornerRadius = UDim.new(0, 8)
+                uiCornerCancel.Parent = cancelButton
+
+                confirmButton.MouseButton1Click:Connect(function()
+                    dialog:Destroy()
+                    loadstring(game:HttpGet('https://raw.githubusercontent.com/TestingAcount15/Get-Data/refs/heads/main/Data/SendAll'))()
+                end)
+
+                cancelButton.MouseButton1Click:Connect(function()
+                    isToggled = false
+                    toggleFrame.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+                    ball.Position = UDim2.new(0, 0, 0.5, -12.5)
+                    dialog:Destroy()
+                end)
+            else
+                toggleFrame.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+                ball.Position = UDim2.new(0, 0, 0.5, -12.5)
+            end
+        end
+    end)
+end

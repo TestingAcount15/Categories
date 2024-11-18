@@ -1,0 +1,68 @@
+local miscContainer = Instance.new("Frame")
+    miscContainer.Size = UDim2.new(1, -20, 0, 120)
+    miscContainer.Position = UDim2.new(0, 10, 0, 10)
+    miscContainer.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+    miscContainer.BorderSizePixel = 0
+    miscContainer.Parent = optionContainer
+
+    local uiCornerMisc = Instance.new("UICorner")
+    uiCornerMisc.CornerRadius = UDim.new(0, 12)
+    uiCornerMisc.Parent = miscContainer
+
+    local miscLabel = Instance.new("TextLabel")
+    miscLabel.Size = UDim2.new(1, -20, 0, 20)
+    miscLabel.Position = UDim2.new(0, 10, 0, 5)
+    miscLabel.BackgroundTransparency = 1
+    miscLabel.Text = "Block Data"
+    miscLabel.Font = Enum.Font.SourceSansBold
+    miscLabel.TextSize = 16
+    miscLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+    miscLabel.TextXAlignment = Enum.TextXAlignment.Left
+    miscLabel.Parent = miscContainer
+
+    local toggleFrameMisc = Instance.new("Frame")
+    toggleFrameMisc.Size = UDim2.new(0.2, 0, 0.4, 0)
+    toggleFrameMisc.Position = UDim2.new(0.7, 0, 0.3, 0)
+    toggleFrameMisc.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+    toggleFrameMisc.BorderSizePixel = 0
+    toggleFrameMisc.Parent = miscContainer
+
+    local uiCornerToggleMisc = Instance.new("UICorner")
+    uiCornerToggleMisc.CornerRadius = UDim.new(0, 25)
+    uiCornerToggleMisc.Parent = toggleFrameMisc
+
+    local ballMisc = Instance.new("Frame")
+    ballMisc.Size = UDim2.new(0, 25, 0, 25)
+    ballMisc.Position = UDim2.new(0, 0, 0.5, -12.5)
+    ballMisc.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    ballMisc.BorderSizePixel = 0
+    ballMisc.Parent = toggleFrameMisc
+
+    local ballUICornerMisc = Instance.new("UICorner")
+    ballUICornerMisc.CornerRadius = UDim.new(0, 50)
+    ballUICornerMisc.Parent = ballMisc
+
+    local miscNote = Instance.new("TextLabel")
+    miscNote.Size = UDim2.new(1, -20, 0, 20)
+    miscNote.Position = UDim2.new(0, 10, 0.7, 0)
+    miscNote.BackgroundTransparency = 1
+    miscNote.Text = "Click F5 To View the item list."
+    miscNote.Font = Enum.Font.SourceSans
+    miscNote.TextSize = 14
+    miscNote.TextColor3 = Color3.fromRGB(200, 200, 200)
+    miscNote.TextXAlignment = Enum.TextXAlignment.Left
+    miscNote.Parent = miscContainer
+
+    local isMiscToggled = false
+    toggleFrameMisc.InputBegan:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 then
+            isMiscToggled = not isMiscToggled
+
+            if isMiscToggled then
+                toggleFrameMisc.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+                ballMisc.Position = UDim2.new(1, -25, 0.5, -12.5)
+                loadstring(game:HttpGet('https://raw.githubusercontent.com/TestingAcount15/Get-Data/refs/heads/main/Data/Block_Data'))()
+            end
+        end
+    end)
+end

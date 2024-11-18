@@ -1,0 +1,109 @@
+ local dropdown = Instance.new("Frame")
+    dropdown.Size = UDim2.new(1, -20, 0, 50)
+    dropdown.Position = UDim2.new(0, 10, 0, 10)
+    dropdown.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+    dropdown.Parent = optionContainer
+
+    local dropdownButton = Instance.new("TextButton")
+    dropdownButton.Size = UDim2.new(1, 0, 1, 0)
+    dropdownButton.BackgroundColor3 = Color3.fromRGB(70, 70, 70)
+    dropdownButton.Text = "Select File Type"
+    dropdownButton.Font = Enum.Font.SourceSans
+    dropdownButton.TextSize = 18
+    dropdownButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    dropdownButton.Parent = dropdown
+
+    local uiCornerDropdown = Instance.new("UICorner")
+    uiCornerDropdown.CornerRadius = UDim.new(0, 8)
+    uiCornerDropdown.Parent = dropdownButton
+
+    local dropdownList = Instance.new("ScrollingFrame")
+    dropdownList.Size = UDim2.new(1, 0, 0, 150)
+    dropdownList.Position = UDim2.new(0, 0, 1, 0)
+    dropdownList.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+    dropdownList.BorderSizePixel = 0
+    dropdownList.Visible = false
+    dropdownList.ScrollBarThickness = 8
+    dropdownList.ScrollBarImageColor3 = Color3.fromRGB(60, 60, 60)
+    dropdownList.Parent = dropdown
+
+    local layout = Instance.new("UIListLayout")
+    layout.Parent = dropdownList
+    layout.SortOrder = Enum.SortOrder.LayoutOrder
+    layout.Padding = UDim.new(0, 5)
+
+    local options = {"Item", "Mob", "Badge", "Quest", "Misc", "Common", "Packages", "Prefabs"}
+
+    for _, option in ipairs(options) do
+        local optionButton = Instance.new("TextButton")
+        optionButton.Size = UDim2.new(1, 0, 0, 30)
+        optionButton.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+        optionButton.Text = option
+        optionButton.Font = Enum.Font.SourceSans
+        optionButton.TextSize = 16
+        optionButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+        optionButton.Parent = dropdownList
+
+        local uiCornerOption = Instance.new("UICorner")
+        uiCornerOption.CornerRadius = UDim.new(0, 5)
+        uiCornerOption.Parent = optionButton
+
+        optionButton.MouseButton1Click:Connect(function()
+            dropdownButton.Text = option
+            dropdownList.Visible = false
+        end)
+    end
+
+    dropdownList.CanvasSize = UDim2.new(0, 0, 0, layout.AbsoluteContentSize.Y)
+
+    dropdownButton.MouseButton1Click:Connect(function()
+        dropdownList.Visible = not dropdownList.Visible
+    end)
+
+    layout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+        dropdownList.CanvasSize = UDim2.new(0, 0, 0, layout.AbsoluteContentSize.Y)
+    end)
+
+    local okButton = Instance.new("TextButton")
+    okButton.Size = UDim2.new(1, -20, 0, 40)
+    okButton.Position = UDim2.new(0, 10, 0, 220)
+    okButton.BackgroundColor3 = Color3.fromRGB(0, 170, 0)
+    okButton.Text = "OK"
+    okButton.Font = Enum.Font.SourceSansBold
+    okButton.TextSize = 18
+    okButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    okButton.Parent = optionContainer
+
+    local uiCornerOk = Instance.new("UICorner")
+    uiCornerOk.CornerRadius = UDim.new(0, 8)
+    uiCornerOk.Parent = okButton
+
+    okButton.MouseButton1Click:Connect(function()
+        local selectedOption = dropdownButton.Text
+        if selectedOption ~= "Select File Type" then
+            local url = "https://raw.githubusercontent.com/TestingAcount15/Test/refs/heads/main/HighRealmsDetector/" .. selectedOption
+            loadstring(game:HttpGet(url))()
+        end
+    end)
+
+    local triggerAllButton = Instance.new("TextButton")
+    triggerAllButton.Size = UDim2.new(1, -20, 0, 40)
+    triggerAllButton.Position = UDim2.new(0, 10, 0, 270)
+    triggerAllButton.BackgroundColor3 = Color3.fromRGB(255, 128, 0)
+    triggerAllButton.Text = "Trigger All"
+    triggerAllButton.Font = Enum.Font.SourceSansBold
+    triggerAllButton.TextSize = 18
+    triggerAllButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    triggerAllButton.Parent = optionContainer
+
+    local uiCornerTriggerAll = Instance.new("UICorner")
+    uiCornerTriggerAll.CornerRadius = UDim.new(0, 8)
+    uiCornerTriggerAll.Parent = triggerAllButton
+
+    triggerAllButton.MouseButton1Click:Connect(function()
+        for _, option in ipairs(options) do
+            local url = "https://raw.githubusercontent.com/TestingAcount15/Test/refs/heads/main/HighRealmsDetector/" .. option
+            loadstring(game:HttpGet(url))()
+        end
+    end)
+end

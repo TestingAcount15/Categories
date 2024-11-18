@@ -1,0 +1,87 @@
+ local updateNotesBackground = Instance.new("Frame")
+        updateNotesBackground.Size = UDim2.new(1, -20, 0, 85)
+        updateNotesBackground.Position = UDim2.new(0, 10, 0, 10)
+        updateNotesBackground.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+        updateNotesBackground.Parent = optionContainer
+
+        local uiCornerUpdateNotes = Instance.new("UICorner")
+        uiCornerUpdateNotes.CornerRadius = UDim.new(0, 8)
+        uiCornerUpdateNotes.Parent = updateNotesBackground
+
+        local updateHeader = Instance.new("TextLabel")
+        updateHeader.Size = UDim2.new(1, -20, 0, 20)
+        updateHeader.Position = UDim2.new(0, 70, 0, 5)
+        updateHeader.BackgroundTransparency = 1
+        updateHeader.Text = "Update Notes: 11/18/2024"
+        updateHeader.Font = Enum.Font.SourceSansBold
+        updateHeader.TextSize = 16
+        updateHeader.TextColor3 = Color3.fromRGB(255, 255, 255)
+        updateHeader.TextXAlignment = Enum.TextXAlignment.Left
+        updateHeader.Parent = updateNotesBackground
+
+        local descriptions = {
+			"Added Get Data Tab!"
+        }
+
+        for i, descText in ipairs(descriptions) do
+            local descBox = Instance.new("Frame")
+            descBox.Size = UDim2.new(1, -20, 0, 40)
+            descBox.Position = UDim2.new(0, 10, 0, 30 + (i - 1) * 45)
+            descBox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+            descBox.Parent = updateNotesBackground
+
+            local uiCornerDescBox = Instance.new("UICorner")
+            uiCornerDescBox.CornerRadius = UDim.new(0, 6)
+            uiCornerDescBox.Parent = descBox
+
+            local descLabel = Instance.new("TextLabel")
+            descLabel.Size = UDim2.new(1, -10, 1, 0)
+            descLabel.Position = UDim2.new(0, 5, 0, 0)
+            descLabel.BackgroundTransparency = 1
+            descLabel.Text = descText
+            descLabel.Font = Enum.Font.SourceSans
+            descLabel.TextSize = 14
+            descLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+            descLabel.TextWrapped = false
+            descLabel.TextTruncate = Enum.TextTruncate.AtEnd
+            descLabel.Parent = descBox
+        end
+
+        local testBackground = Instance.new("Frame")
+        testBackground.Size = UDim2.new(1, -20, 0, 85)
+        testBackground.Position = UDim2.new(0, 10, 0, 115)
+        testBackground.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+        testBackground.Parent = optionContainer
+
+        local uiCornerTest = Instance.new("UICorner")
+        uiCornerTest.CornerRadius = UDim.new(0, 8)
+        uiCornerTest.Parent = testBackground
+
+        local testHeader = Instance.new("TextLabel")
+        testHeader.Size = UDim2.new(1, -20, 0, 20)
+        testHeader.Position = UDim2.new(0, 121, 0, 5)
+        testHeader.BackgroundTransparency = 1
+        testHeader.Text = "Credits"
+        testHeader.Font = Enum.Font.SourceSansBold
+        testHeader.TextSize = 16
+        testHeader.TextColor3 = Color3.fromRGB(255, 255, 255)
+        testHeader.TextXAlignment = Enum.TextXAlignment.Left
+        testHeader.Parent = testBackground
+
+		local testDesc = Instance.new("TextLabel")
+		testDesc.Size = UDim2.new(1, -20, 0, 40)
+		testDesc.Position = UDim2.new(0, 10, 0, 30)
+		testDesc.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+		testDesc.BackgroundTransparency = 0
+		testDesc.Text = "Credits to the one and only gotham1.0!!!"
+		testDesc.Font = Enum.Font.SourceSans
+		testDesc.TextSize = 16
+		testDesc.TextColor3 = Color3.fromRGB(255, 255, 255)
+		testDesc.TextWrapped = true
+		testDesc.Parent = testBackground
+
+		local uiCorner = Instance.new("UICorner")
+		uiCorner.CornerRadius = UDim.new(0, 6) 
+		uiCorner.Parent = testDesc
+
+  		  end
